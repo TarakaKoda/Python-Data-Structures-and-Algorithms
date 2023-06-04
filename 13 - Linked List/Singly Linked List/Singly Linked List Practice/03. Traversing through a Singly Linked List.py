@@ -45,7 +45,7 @@ class Singly_Linked_List:
             print("Singly Linked list does not exist")
         node = self.head
         while node:
-            yield node.value
+            print(node.value)
             node = node.next
 
     def __iter__(self):
@@ -65,6 +65,4 @@ singly_linked_list.inserting(1, -1)
 if __name__ == "__main__":
     print(__doc__)
     print([node.value for node in singly_linked_list])
-    for i in singly_linked_list.traversing():
-        if int(i)%2 == 0:
-            print(i)
+singly_linked_list.traversing()
