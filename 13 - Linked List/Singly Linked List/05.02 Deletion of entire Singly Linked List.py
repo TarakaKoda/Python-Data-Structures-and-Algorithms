@@ -74,7 +74,7 @@ class Singly_Linked_List:
                     self.tail = None
                 else:
                     self.head = self.head.next
-            elif location == 1:
+            elif location == -1:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
@@ -95,7 +95,7 @@ class Singly_Linked_List:
                 nextNode = tempNode.next
                 tempNode.next = nextNode.next
 
-    def deleteEntireSLL(self):
+    def deleting_entire_singly_linked_list(self):
         if self.head is None:
             print("SLL does not exist")
         else:
