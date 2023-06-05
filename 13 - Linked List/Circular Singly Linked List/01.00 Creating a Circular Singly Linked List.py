@@ -49,8 +49,8 @@ circular_singly_linked_list = Circular_Singly_Linked_List()
 
 if __name__ == "__main__":
     print(Linked_List().__doc__)
-    circular_singly_linked_list.create_circular_singly_linked_list(2)
-    print([node.value for node in circular_singly_linked_list])
+    # circular_singly_linked_list.create_circular_singly_linked_list(2)
+    # print([node.value for node in circular_singly_linked_list])
 
 
 
