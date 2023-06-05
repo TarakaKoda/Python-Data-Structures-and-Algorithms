@@ -65,7 +65,7 @@ class Singly_Linked_List:
             return f"value {value} does not exist in Singly Linked List"
 
     # Delete a node from Singly Linked List
-    def deleteNode(self, location):
+    def deletion(self, location):
         if self.head is None:
             return "The Singly Linked List does not exist"
         else:
@@ -75,7 +75,7 @@ class Singly_Linked_List:
                     self.tail = None
                 else:
                     self.head = self.head.next
-            elif location == 1:
+            elif location == -1:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
