@@ -56,9 +56,8 @@ singly_linked_list = Singly_Linked_List()
 singly_linked_list.inserting(5, 0)
 singly_linked_list.inserting(3, -1)
 singly_linked_list.inserting(4, 1)
-singly_linked_list.inserting(2, 3)
 singly_linked_list.inserting(1, -1)
-
+singly_linked_list.inserting(2, 5)
 
 if __name__ == "__main__":
     print(__doc__)
