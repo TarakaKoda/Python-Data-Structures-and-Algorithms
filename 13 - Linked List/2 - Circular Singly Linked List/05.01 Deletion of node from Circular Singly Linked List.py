@@ -131,4 +131,5 @@ if __name__ == "__main__":
     # print(circular_singly_linked_list.searching(2))
     # circular_singly_linked_list.deletion(0)
     circular_singly_linked_list.deletion(1)
+    circular_singly_linked_list.inserting(3,-1)
     print([node.value for node in circular_singly_linked_list])
