@@ -106,6 +106,10 @@ class Doubly_Linked_List:
         if self.head is None:
             print("Doubly Linked List does not exist")
         else:
+            temp_node = self.head
+            while temp_node:
+                temp_node.previous = None
+                temp_node = temp_node.next
             self.head = None
             self.tail = None
 
@@ -131,5 +135,5 @@ if __name__ == "__main__":
     # print(doubly_linked_list.searching(2))
     doubly_linked_list.delete_node(3)
     doubly_linked_list.delete_entire_doubly_linked_list()
-    doubly_linked_list.delete_entire_doubly_linked_list()
+    # doubly_linked_list.delete_entire_doubly_linked_list()
     print([node.value for node in doubly_linked_list])

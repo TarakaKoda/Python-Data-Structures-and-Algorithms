@@ -90,6 +90,8 @@ class Circular_Doubly_Linked_List:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
+                    self.next = None
+                    self.previous = None
                 else:
                     self.head = self.head.next
                     self.head.next.previous = self.tail
@@ -98,6 +100,8 @@ class Circular_Doubly_Linked_List:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
+                    self.next = None
+                    self.previous = None
                 else:
                     self.tail = self.tail.previous
                     self.tail.next = self.head
@@ -133,4 +137,8 @@ if __name__ == "__main__":
     # circular_doubly_linked_list.reverse_traversing()
     # circular_doubly_linked_list.searching(4)
     circular_doubly_linked_list.delete(2)
+    circular_doubly_linked_list.delete(0)
+    circular_doubly_linked_list.delete(0)
+    circular_doubly_linked_list.delete(0)
+    circular_doubly_linked_list.delete(0)
     print([node.value for node in circular_doubly_linked_list])

@@ -111,6 +111,12 @@ class Doubly_Linked_List:
         if self.head is None:
             print("Doubly Linked List does not exist")
         else:
+            temp_node = self.head
+            while temp_node:
+                temp_node.previous = None
+                temp_node = temp_node.next
+                if temp_node == self.tail.next:
+                    break
             self.head = None
             self.tail = None
 

@@ -89,6 +89,8 @@ class Circular_Doubly_Linked_List:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
+                    self.next = None
+                    self.previous = None
                 else:
                     self.head = self.head.next
                     self.head.next.previous = self.tail
@@ -97,6 +99,8 @@ class Circular_Doubly_Linked_List:
                 if self.head == self.tail:
                     self.head = None
                     self.tail = None
+                    self.next = None
+                    self.previous = None
                 else:
                     self.tail = self.tail.previous
                     self.tail.next = self.head
@@ -114,6 +118,11 @@ class Circular_Doubly_Linked_List:
         if self.head is None:
             print("Circular Doubly Linked List does not exist")
         else:
+            self.tail.next = None
+            temp_node = self.head
+            while temp_node:
+                temp_node.previous = None
+                temp_node = temp_node.next
             self.head = None
             self.tail = None
 

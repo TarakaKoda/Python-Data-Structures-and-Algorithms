@@ -14,7 +14,7 @@ class Linked_List:
          Deleting first node                                O(1)                                       O(1)
          Deleting nth node                                  O(N)                                       O(1)
          Deleting last node                                 O(1)                                       O(1)
-         Deleting entire Doubly Linked List                 O(1)                                       O(1)
+         Deleting entire Doubly Linked List                 O(N)                                       O(1)
     '''
 
 
