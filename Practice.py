@@ -1117,13 +1117,129 @@ circular_singly_inked_list.insert(1,0)
 # print([node.value for node in circular_singly_inked_list])
 # circular_singly_inked_list.delete_entire_circular_singly_linked_list()
 
+class Node3:
+
+    len = -1
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+        self.previous = None
+        Node3.len += 1
 
 
+class Doubly_linked_list:
+
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def create_doubly_linked_list(self, node_value):
+        node = Node3(node_value)
+        self.head = node
+        self.tail = node
+
+    def insert(self, value, location):
+        new_node = Node3(value)
+        if self.head == None:
+            print("doubly linked list does not exist")
+        else:
+            if location == 0:
+                new_node.next = self.head
+                self.head.previous = new_node
+                self.head = new_node
+                new_node.previous = None
+            elif location >= Node3.len or location == -1:
+                self.tail.next = new_node
+                new_node.previous = self.tail
+                new_node.next = None
+                self.tail = new_node
+            else:
+                temp_node = self.head
+                index = 0
+                while index < location -1:
+                    temp_node = temp_node.next
+                    index += 1
+                next_node = temp_node.next
+                temp_node.next = new_node
+                new_node.previous = temp_node
+                new_node.next = next_node
+                next_node.previous = new_node
+
+    def traversing(self):
+        if self.head == None:
+            print("Doubly Linked List does not exist")
+        else:
+            temp_node = self.head
+            while temp_node:
+                print(temp_node.value)
+                temp_node = temp_node.next
+
+    def reverse_traversing(self):
+        if self.head == None:
+            print("Doubly Linked List does not exist")
+        else:
+            temp_node = self.tail
+            while temp_node:
+                print(temp_node.value)
+                temp_node = temp_node.previous
+
+    def deletion(self, location):
+        if self.head  == None:
+            print("Doubly Linked List does not exist")
+        else:
+            if location == 0:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.head = self.head.next
+                    self.head.next.previous = None
+            elif location >= Node3.len or location == -1:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.tail = self.tail.previous
+                    self.tail.next = None
+            else:
+                temp_node = self.head
+                index = 0
+                while index < location -1:
+                    temp_node = temp_node.next
+                    index += 1
+                next_node = temp_node.next
+                temp_node.next = next_node.next
+                next_node.next.previous = temp_node
+
+    def delete_entire_doubly_linked_list(self):
+        if self.head is None:
+            print("Doubly Linked List does not exist")
+        else:
+            self.head = None
+            self.tail = None
+            print("Doubly Linked List has been Deleted")
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
 
 
+doubly_linked_list = Doubly_linked_list()
 
-
-
-
+doubly_linked_list.create_doubly_linked_list(2)
+doubly_linked_list.insert(1,0)
+doubly_linked_list.insert(3,-1)
+doubly_linked_list.insert(4,4)
+print([node.value for node in doubly_linked_list])
+# doubly_linked_list.traversing()
+# doubly_linked_list.reverse_traversing()
+doubly_linked_list.deletion(1)
+doubly_linked_list.deletion(-1)
+doubly_linked_list.deletion(-1)
+print([node.value for node in doubly_linked_list])
+doubly_linked_list.delete_entire_doubly_linked_list()
+doubly_linked_list.delete_entire_doubly_linked_list()
 
 
