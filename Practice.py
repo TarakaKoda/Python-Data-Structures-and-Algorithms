@@ -1232,14 +1232,156 @@ doubly_linked_list.create_doubly_linked_list(2)
 doubly_linked_list.insert(1,0)
 doubly_linked_list.insert(3,-1)
 doubly_linked_list.insert(4,4)
-print([node.value for node in doubly_linked_list])
+# print([node.value for node in doubly_linked_list])
 # doubly_linked_list.traversing()
 # doubly_linked_list.reverse_traversing()
 doubly_linked_list.deletion(1)
 doubly_linked_list.deletion(-1)
 doubly_linked_list.deletion(-1)
-print([node.value for node in doubly_linked_list])
-doubly_linked_list.delete_entire_doubly_linked_list()
-doubly_linked_list.delete_entire_doubly_linked_list()
+# print([node.value for node in doubly_linked_list])
+# doubly_linked_list.delete_entire_doubly_linked_list.()
+# doubly_linked_list.delete_entire_doubly_linked_list()
 
+class Node4:
 
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+        self.previous = None
+
+class Circular_Doubly_Linked_List:
+
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def create_circular_doubly_linked(self, node_value):
+        node = Node4(node_value)
+        self.head = node
+        self.tail = node
+        self.next = node
+        self.previous = node
+
+    def insert(self, value, location):
+        new_node = Node4(value)
+        if self.head is None:
+            print("Circular Doubly Linked List does not exist")
+        else:
+            if location == 0:
+                new_node.next = self.head
+                self.head.previous = new_node
+                self.tail.next = new_node
+                self.head = new_node
+            elif location == -1:
+                self.tail.next = new_node
+                new_node.previous = self.tail
+                self.tail = new_node
+                new_node.next = self.head
+            else:
+                temp_node = self.head
+                index = 0
+                while index < location -1:
+                    temp_node = temp_node.next
+                    index += 1
+                next_node = temp_node.next
+                temp_node.next = new_node
+                new_node.previous = temp_node
+                new_node.next = next_node
+                next_node.previous = new_node
+
+    def traversing(self):
+        if self.head is None:
+            return print("Circular Doubly Linked List does not exist")
+        else:
+            temp_node = self.head
+            while temp_node:
+                print(temp_node.value)
+                temp_node = temp_node.next
+                if temp_node == self.tail.next:
+                    break
+
+    def reverse_traversing(self):
+        if self.head is None:
+            return print("Circular Doubly Linked List does not exist")
+        else:
+            temp_node = self.tail
+            while temp_node:
+                print(temp_node.value)
+                temp_node = temp_node.previous
+                if temp_node == self.head.previous:
+                    break
+
+    def searching(self, value):
+        if self.head is None:
+            return print("Circular Doubly Linked List does not exist")
+        else:
+            temp_node = self.head
+            while temp_node:
+                if temp_node.value == value:
+                    return print(f"{value} found in the Circular Doubly Linked List")
+                temp_node = temp_node.next
+                if temp_node == self.tail.next:
+                    break
+        return print(f"{value} does not exist in the Circular Doubly Linked List")
+
+    def delete(self, location):
+        if self.head is None:
+            return print("Circular Doubly Linked List does not exist")
+        else:
+            if location == 0:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.head =  self.head.next
+                    self.head.next.previous = self.tail
+                    self.tail.next = self.head
+            elif location == -1:
+                if self.head == self.tail:
+                    self.head = None
+                    self.tail = None
+                else:
+                    self.tail = self.tail.previous
+                    self.tail.next = self.head
+            else:
+                temp_node = self.head
+                index = 0
+                while index < location -1:
+                    temp_node = temp_node.next
+                    index += 1
+                next_node = temp_node.next
+                temp_node.next = next_node.next
+                next_node.next.previous = temp_node
+
+    def delete_entire_circular_doubly_linked_list(self):
+        if self.head is None:
+            return print("Circular Doubly Linked List does not exist")
+        else:
+            self.head = None
+            self.tail = None
+
+    def __iter__(self):
+        temp_node = self.head
+        while temp_node:
+            yield temp_node
+            temp_node = temp_node.next
+            if temp_node == self.tail.next:
+                break
+
+circular_doubly_linked_list = Circular_Doubly_Linked_List()
+
+circular_doubly_linked_list.create_circular_doubly_linked(2)
+circular_doubly_linked_list.insert(0,0)
+circular_doubly_linked_list.insert(3,-1)
+circular_doubly_linked_list.insert(1,1)
+# print([node.value for node in circular_doubly_linked_list])
+# circular_doubly_linked_list.traversing()
+# circular_doubly_linked_list.reverse_traversing()
+# circular_doubly_linked_list.searching(3)
+# circular_doubly_linked_list.searching(5)
+circular_doubly_linked_list.delete(0)
+circular_doubly_linked_list.delete(-1)
+circular_doubly_linked_list.delete(1)
+circular_doubly_linked_list.delete(0)
+# circular_doubly_linked_list.delete_entire_circular_doubly_linked_list()
+# print([node.value for node in circular_doubly_linked_list])
