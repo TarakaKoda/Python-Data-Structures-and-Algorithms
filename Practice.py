@@ -1367,7 +1367,7 @@ circular_doubly_linked_list.insertion(1, 0)
 circular_doubly_linked_list.insertion(0, 0)
 circular_doubly_linked_list.insertion(4, -1)
 circular_doubly_linked_list.insertion(3, 3)
-print([node.value for node in circular_doubly_linked_list])
+# print([node.value for node in circular_doubly_linked_list])
 # circular_doubly_linked_list.traversing()
 # circular_doubly_linked_list.reverse_traversing()
 # circular_doubly_linked_list.searching(4)
@@ -1376,4 +1376,21 @@ circular_doubly_linked_list.delete(0)
 circular_doubly_linked_list.delete(0)
 circular_doubly_linked_list.delete(0)
 circular_doubly_linked_list.delete(0)
-print([node.value for node in circular_doubly_linked_list])
+# print([node.value for node in circular_doubly_linked_list])
+
+# finding the unique numbers in a list/array
+def find_unique_numbers(nums):
+    frequency = {}
+    for num in nums:
+        if num in frequency:
+            frequency[num] += 1
+        else:
+            frequency[num] = 1
+    unique_list = []
+    for num in frequency:
+        if frequency[num] == 1:
+            unique_list.append(num)
+    return unique_list
+
+
+# print(find_unique_numbers([1,2,3,1,4,3,2]))
