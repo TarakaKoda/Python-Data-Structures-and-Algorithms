@@ -19,7 +19,7 @@ def remove_duplicate(linked_list):
 
 
 custom_linked_list = Linked_List()
-custom_linked_list.generate(10, 99,0)
+custom_linked_list.generate(10, 50,0)
 
 if __name__ == "__main__":
     print(__doc__)
