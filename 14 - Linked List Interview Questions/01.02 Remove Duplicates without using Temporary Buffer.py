@@ -69,7 +69,7 @@ class Linked_List:
 
 
 linked_list = Linked_List()
-linked_list.generate(10,99,1)
+linked_list.generate(5,99,1)
 
 if __name__ == "__main__":
     print(__doc__)
