@@ -7,24 +7,25 @@ sum as a linked list
 from LinkedList import Linked_List
 
 
-def sumList(llA, llB):
-    n1 = llA.head
-    n2 = llB.head
+def sum_of_linked_list(linked_list1, linked_list2):
+    current_node1 = linked_list1.head
+    current_node2 = linked_list2.head
     carry = 0
-    ll = Linked_List()
+    result_linked_list = Linked_List()
 
-    while n1 or n2:
+    while current_node1 or current_node2:
         result = carry
-        if n1:
-            result += n1.value
-            n1 = n1.next
-        if n2:
-            result += n2.value
-            n2 = n2.next
-        ll.add(int(result % 10))
-        carry = result / 10
+        if current_node1:
+            result += current_node1.value
+            current_node1 = current_node1.next
 
-    return ll
+        if current_node2:
+            result += current_node2.value
+            current_node2 = current_node2.next
+
+        result_linked_list.add(int(result % 10))
+        carry = result/10
+    return result_linked_list
 
 
 llA = Linked_List()
@@ -41,4 +42,4 @@ if __name__ == "__main__":
     print(__doc__)
     print(llA)
     print(llB)
-    print(sumList(llA, llB))
+    print(sum_of_linked_list(llA, llB))
