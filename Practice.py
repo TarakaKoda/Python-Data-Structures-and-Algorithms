@@ -1394,3 +1394,244 @@ def find_unique_numbers(nums):
 
 
 # print(find_unique_numbers([1,2,3,1,4,3,2]))
+
+# Linked List class
+from random import randint
+class Node6:
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+        self.previous = None
+
+    def __str__(self):
+        return str(self.value)
+
+class Linked_List:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def __str__(self):
+        values = [str(node.value) for node in self]
+        return "->".join(values)
+
+    def __len__(self):
+        result = 0
+        temp_node = self.head
+        while temp_node:
+            result += 1
+            temp_node = temp_node.next
+        return result
+
+    def add(self, value):
+        if self.head is None:
+            new_node = Node6(value)
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = Node6(value)
+            self.tail = self.tail.next
+        return self.tail
+    def generate(self, n ,max_value, min_vlue):
+        self.head = None
+        self.tail = None
+        for i in range(n):
+            self.add(randint(min_vlue, max_value))
+        return self
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
+
+
+# remove duplicate values in the linked list
+
+def remove_duplicate(linked_list):
+    if linked_list.head is None:
+        return
+    else:
+        current_node = linked_list.head
+        unique_value = {current_node.value}
+
+        while current_node.next:
+            if current_node.next.value in unique_value:
+                current_node.next = current_node.next.next
+            else:
+                unique_value.add(current_node.next.value)
+                current_node = current_node.next
+        return linked_list
+
+# without using the temporary buffer
+def remove_duplicates(linked_list):
+    if linked_list.head is None:
+        return
+    else:
+        current_node = linked_list.head
+        while current_node:
+            runner = current_node
+            while runner.next:
+                if runner.next.value == current_node.value:
+                    runner.next = runner.next.next
+                runner = runner.next
+            current_node = current_node.next
+        return linked_list
+
+
+linked_list = Linked_List()
+
+linked_list.generate(10, 99, 1)
+# print(linked_list)
+# print(len(linked_list))
+# print(remove_duplicates(linked_list))
+# print(len(remove_duplicate(linked_list)))
+
+# Find nth value from the last using iteration method
+def nth_value_from_last(linked_list, n):
+    if n > len(linked_list):
+        return None
+    elif linked_list.head is None:
+        return
+    else:
+        pointer1 = linked_list.head
+        pointer2 = linked_list.head
+
+        for _ in range(n):
+            pointer2 = pointer2.next
+            if pointer2 is None:
+                return pointer1
+
+        while pointer2:
+            pointer1 = pointer1.next
+            pointer2 = pointer2.next
+        return pointer1
+
+# print(nth_value_from_last(linked_list, 10))
+
+# finding the nth value from the last using recursion method
+def nth_value_last_recursive(linked_list, n):
+    if n == 1:
+        return linked_list.tail
+    else:
+        temp_node = linked_list.head
+        while temp_node:
+            if temp_node.next == linked_list.tail:
+                break
+            temp_node = temp_node.next
+        temp_node.next = None
+        linked_list.tail = temp_node
+        return nth_value_from_last(linked_list, n-1)
+
+# print(nth_value_last_recursive(linked_list,9))
+
+# partition of  linked list based on value
+
+def partition(linked_list, value):
+    if linked_list.head is None:
+        return None
+    else:
+        current_node = linked_list.head
+        linked_list.tail = linked_list.head
+
+        while current_node:
+            next_node = current_node.next
+            current_node.next = None
+            if current_node.value < value:
+                current_node.next = linked_list.head
+                linked_list.head = current_node
+            else:
+                linked_list.tail.next = current_node
+                linked_list.tail = current_node
+            current_node = next_node
+        if linked_list.tail.next:
+            linked_list.tail.next = None
+        return linked_list
+
+# print(partition(linked_list,30))
+
+# sum of two linked list
+
+def sum_of_linked_list(linked_list1, linked_list2):
+    current_node1 = linked_list1.head
+    current_node2 = linked_list2.head
+    carry = 0
+    result_linked_list = Linked_List()
+
+    while current_node1 or current_node2:
+        result = carry
+        if current_node1:
+            result += current_node1.value
+            current_node1 = current_node1.next
+
+        if current_node2:
+            result += current_node2.value
+            current_node2 = current_node2.next
+
+        result_linked_list.add(int(result % 10))
+        carry = result/10
+    return result_linked_list
+
+
+linked_list1 = Linked_List()
+linked_list2 = Linked_List()
+
+linked_list1.add(2)
+linked_list1.add(1)
+linked_list1.add(3)
+
+linked_list2.add(5)
+linked_list2.add(9)
+linked_list2.add(2)
+linked_list2.add(3)
+
+# print(linked_list1)
+# print(linked_list2)
+# print(sum_of_linked_list(linked_list1, linked_list2))
+
+
+def intersection(linked_list1, linked_list2):
+    if linked_list1.tail is not linked_list2.tail:
+        return False
+
+    ll1 = len(linked_list1)
+    ll2 = len(linked_list2)
+
+    shorter = linked_list1 if ll1 < ll2 else linked_list2
+    longer = linked_list2 if ll1 < ll2 else linked_list1
+
+    difference = len(longer) - len(shorter)
+
+    longer_node = longer.head
+    shorter_node = shorter.head
+
+    for _ in range(difference):
+        longer_node = longer_node.next
+
+    while shorter_node is not longer_node:
+        shorter_node = shorter_node.next
+        longer_node = longer_node.next
+    return longer_node
+
+
+# helper function to create a intersection between the two linked list
+
+def adding_insertion_between_linked_list(linked_list1, linked_list2, value):
+    new_node = Node6(value)
+    linked_list1.tail.next = new_node
+    linked_list1.tail = new_node
+    linked_list2.tail.next = new_node
+    linked_list2.tail = new_node
+
+linked_list_temp1 = Linked_List()
+ll1 = linked_list_temp1.generate(4,99,1)
+
+linked_list_temp2 = Linked_List()
+ll2 = linked_list_temp2.generate(7,99,2)
+
+adding_insertion_between_linked_list(ll1,ll2, 5)
+adding_insertion_between_linked_list(ll1,ll2, 88)
+
+print(ll1)
+print(ll2)
+print(intersection(ll1,ll2))
