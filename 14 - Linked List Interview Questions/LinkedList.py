@@ -48,3 +48,8 @@ class Linked_List:
         for i in range(n):
             self.add(randint(min_value, max_value))
         return self
+
+# linked_list = Linked_List()
+#
+# linked_list.generate(10,99,1)
+# print(linked_list)
