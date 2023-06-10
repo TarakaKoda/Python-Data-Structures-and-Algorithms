@@ -1674,15 +1674,80 @@ class Stack:
     def delete(self):
         self.list = None
 
-stack = Stack()
+# stack = Stack()
+#
+# stack.push(1)
+# stack.push(2)
+# stack.push(3)
+# stack.push(4)
+# stack.pop()
+# print(stack.peek())
+# stack.delete()
+# stack.is_empty()
+# print(stack)
 
-stack.push(1)
-stack.push(2)
-stack.push(3)
+class Stack_with_maximum_limit:
+    def __init__(self, max_value):
+        self.max_value = max_value
+        self.list = []
+
+    def __str__(self):
+        if self.list is None:
+            return "Stack is Deleted"
+        elif self.list == []:
+            return "Stack is empty"
+        else:
+            values = self.list.reverse()
+            values = [str(x) for x in self.list]
+            return "\n".join(values)
+
+    def is_empty(self):
+        if self.list == []:
+            return True
+        else:
+            return False
+
+    def is_full(self):
+        if len(self.list) == self.max_value:
+            return True
+        else:
+            return False
+
+    def push(self, value):
+        if self.is_full():
+            return "Stack is full"
+        else:
+            self.list.append(value)
+
+    def pop(self):
+        if self.is_empty():
+            return "Stack is Empty"
+        else:
+            return self.list.pop()
+    def peek(self):
+        if self.is_empty():
+            return "Stack is empty"
+        else:
+            return self.list[-1]
+
+    def delete(self):
+        self.list = None
+
+stack = Stack_with_maximum_limit(5)
+
+stack.push(9)
+stack.push(12)
+stack.push(8)
 stack.push(4)
-stack.pop()
-print(stack.peek())
-stack.delete()
-stack.is_empty()
+stack.push(6)
 print(stack)
-
+# print(stack.push(1))
+print(stack.pop())
+# print(stack.peek())
+# print(stack.is_full())
+# print(stack.is_empty())
+stack.pop()
+stack.pop()
+stack.pop()
+stack.pop()
+print(stack)
