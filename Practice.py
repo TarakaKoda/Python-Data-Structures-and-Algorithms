@@ -1733,21 +1733,98 @@ class Stack_with_maximum_limit:
     def delete(self):
         self.list = None
 
-stack = Stack_with_maximum_limit(5)
-
-stack.push(9)
-stack.push(12)
-stack.push(8)
-stack.push(4)
-stack.push(6)
-print(stack)
+# stack = Stack_with_maximum_limit(5)
+#
+# stack.push(9)
+# stack.push(12)
+# stack.push(8)
+# stack.push(4)
+# stack.push(6)
+# print(stack)
 # print(stack.push(1))
-print(stack.pop())
+# print(stack.pop())
 # print(stack.peek())
 # print(stack.is_full())
 # print(stack.is_empty())
-stack.pop()
-stack.pop()
-stack.pop()
-stack.pop()
+# stack.pop()
+# stack.pop()
+# stack.pop()
+# stack.pop()
+# print(stack)
+
+class Node7:
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+
+    def __str__(self):
+        return self.value
+
+class Linked_List:
+    def __init__(self):
+        self.head = None
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
+
+class Stack_Using_Linked_List:
+    def __init__(self):
+        self.linked_list = Linked_List()
+
+    def __str__(self):
+        if self.linked_list.head is None:
+            return "Stack is empty"
+        values = [str(node.value) for node in self.linked_list]
+        return "\n".join(values)
+
+    def is_empty(self):
+        if self.linked_list.head == None:
+            return True
+        else:
+            return False
+    def push(self, value):
+        new_node = Node7(value)
+        if self.is_empty():
+            self.linked_list.head = new_node
+            new_node.next = None
+        else:
+            new_node.next = self.linked_list.head
+            self.linked_list.head = new_node
+
+    def pop(self):
+        if self.is_empty():
+            return "Stack is empty"
+        else:
+            popped_node = self.linked_list.head
+            self.linked_list.head = self.linked_list.head.next
+            return popped_node.value
+
+    def peek(self):
+        if self.is_empty():
+            return "stack is empty"
+        else:
+            return self.linked_list.head.value
+
+    def delete(self):
+        self.linked_list.head = None
+
+stack = Stack_Using_Linked_List()
+# print(stack.is_empty())
+stack.push(1)
+stack.push(10)
+stack.push(11)
+stack.push(90)
+stack.push(99)
+print(stack)
+print("---popped values-----")
+print(stack.pop())
+print(stack.pop())
+print("-----peek value------")
+print(stack.peek())
+print("-----stack-----")
+print(stack)
+stack.delete()
 print(stack)
