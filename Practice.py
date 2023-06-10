@@ -1632,6 +1632,57 @@ ll2 = linked_list_temp2.generate(7,99,2)
 adding_insertion_between_linked_list(ll1,ll2, 5)
 adding_insertion_between_linked_list(ll1,ll2, 88)
 
-print(ll1)
-print(ll2)
-print(intersection(ll1,ll2))
+# print(ll1)
+# print(ll2)
+# print(intersection(ll1,ll2))
+
+# list as a stack
+
+class Stack:
+
+    def __init__(self):
+        self.list = []
+
+    def __str__(self):
+        if self.list is None:
+            return "Stack deleted"
+        values = self.list.reverse()
+        values = [str(x) for x in self.list]
+        return "\n".join(values)
+
+    def is_empty(self):
+        if self.list == []:
+            return True
+        else:
+            return False
+
+    def push(self, value):
+        self.list.append(value)
+
+    def pop(self):
+        if self.is_empty():
+            return "Stack is empty"
+        else:
+            return self.list.pop()
+
+    def peek(self):
+        if self.is_empty():
+            return "stack is empty"
+        else:
+            return self.list[-1]
+
+    def delete(self):
+        self.list = None
+
+stack = Stack()
+
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+stack.pop()
+print(stack.peek())
+stack.delete()
+stack.is_empty()
+print(stack)
+
