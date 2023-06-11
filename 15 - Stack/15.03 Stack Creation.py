@@ -16,7 +16,7 @@ class Stack:
 
     Stack using Linked List
     - fast performance
-    - implementation is that easy
+    - implementation is that hard
     '''
 
 if __name__ == "__main__":
