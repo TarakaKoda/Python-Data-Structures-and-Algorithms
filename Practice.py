@@ -1883,11 +1883,60 @@ class Stack_Three_in_One:
 
 three_in_one_stack = Stack_Three_in_One(3)
 
-three_in_one_stack.push(4,2)
-three_in_one_stack.push(6,2)
-three_in_one_stack.push(8, 1)
-three_in_one_stack.push(8,0)
-print(three_in_one_stack.peek(0))
-print(three_in_one_stack)
+# three_in_one_stack.push(4,2)
+# three_in_one_stack.push(6,2)
+# three_in_one_stack.push(8, 1)
+# three_in_one_stack.push(8,0)
+# print(three_in_one_stack.peek(0))
+# print(three_in_one_stack)
 
+#   Create Stack with min method
+
+class Node8:
+    def __init__(self, value=None, next=None):
+        self.value = value
+        self.next = next
+    def __str__(self):
+        string = self.value
+        string += "," + str(self.next)
+        return string
+
+class Stack_Min:
+    def __init__(self):
+        self.top = None
+        self.min_node = None
+
+    def min(self):
+        if self.min_node is None:
+            return None
+        else:
+            return self.min_node.value
+
+    def push(self, value):
+        if self.min_node and (self.min_node.value < value):
+            self.min_node = Node8(value=self.min_node.value, next=self.min_node)
+        else:
+            self.min_node = Node8(value=value, next=self.min_node)
+        self.top = Node8(value=value, next=self.top)
+
+    def pop(self):
+        if self.top is None:
+            return "Stack is empty"
+        else:
+            self.min_node = self.min_node.next
+            top_value = self.top
+            self.top = self.top.next
+            return top_value
+
+
+stack_min = Stack_Min()
+
+if __name__  == "__main__":
+    print(stack_min.min())
+    stack_min.push(9)
+    stack_min.push(5)
+    stack_min.push(3)
+    print(stack_min.min())
+    stack_min.pop()
+    print(stack_min.min())
 
