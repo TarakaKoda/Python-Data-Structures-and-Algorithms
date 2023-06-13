@@ -1,44 +1,53 @@
 # Implement a queue using two stacks.
-
-class Stack():
+class Stack:
     def __init__(self):
-        self.list = []
+        self.stack = []
 
     def __len__(self):
-        return len(self.list)
+        return len(self.stack)
 
-    def push(self, item):
-        self.list.append(item)
+    def push(self, value):
+        self.stack.append(value)
 
     def pop(self):
-        if len(self.list) == 0:
+        if len(self.stack) == 0:
             return None
-        return self.list.pop()
+        return self.stack.pop()
 
-
-class Queue_via_Stack():
+class Queue:
     def __init__(self):
-        self.inStack = Stack()
-        self.outStack = Stack()
+        self.in_queue = Stack()
+        self.out_queue = Stack()
 
-    def enqueue(self, item):
-        self.inStack.push(item)
+    def __str__(self):
+        values = self.in_queue.stack.reverse()
+        values = [str(values) for values in self.in_queue.stack]
+        return " ".join(values)
+    def enqueue(self, value):
+        self.in_queue.push(value)
 
     def dequeue(self):
-        while len(self.inStack):
-            self.outStack.push(self.inStack.pop())
-        result = self.outStack.pop()
-        while len(self.outStack):
-            self.inStack.push(self.outStack.pop())
-        return result
+        if len(self.in_queue) == 0:
+            return None
+        else:
+            while len(self.in_queue):
+                self.out_queue.push(self.in_queue.pop())
+            result = self.out_queue.pop()
+            while len(self.out_queue):
+                self.in_queue.push(self.out_queue.pop())
+            return result
 
-
-customQueue = Queue_via_Stack()
+queue = Queue()
 
 if __name__ == "__main__":
-    customQueue.enqueue(1)
-    customQueue.enqueue(2)
-    customQueue.enqueue(3)
-    print(customQueue.dequeue())
-    customQueue.enqueue(4)
-    print(customQueue.dequeue())
+    queue.enqueue(5)
+    queue.enqueue(2)
+    queue.enqueue(6)
+    print(queue)
+    print(queue.dequeue())
+    print(queue)
+
+
+
+
+
