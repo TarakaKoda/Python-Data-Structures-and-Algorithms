@@ -1,44 +1,45 @@
-# Implement a cat and dog queue for an animal shelter.
-
-class Animal_Shelter():
+class Animal_Shelter:
     def __init__(self):
-        self.cats = []
-        self.dogs = []
+        self.cat = []
+        self.dog = []
+
+    def __str__(self):
+        cat_value = [str(value) for value in self.cat]
+        dog_value = [str(value) for value in self.dog]
+        return f"{cat_value}\n{dog_value}"
 
     def enqueue(self, animal, type):
-        if type == 'Cat':
-            self.cats.append(animal)
+        if type.lower() == "cat":
+            self.cat.append(animal)
         else:
-            self.dogs.append(animal)
+            self.dog.append(animal)
 
-    def dequeueCat(self):
-        if len(self.cats) == 0:
+    def dequeue_cat(self):
+        if len(self.dog) == 0:
             return None
-        else:
-            cat = self.cats.pop(0)
-            return cat
+        return self.cat.pop(0)
 
-    def dequeueDog(self):
-        if len(self.dogs) == 0:
+    def dequeue_dog(self):
+        if len(self.dog) == 0:
             return None
+        return self.dog.pop(0)
+
+    def dequeue_any(self):
+        if len(self.cat) == 0:
+            return self.dog.pop(0)
         else:
-            dog = self.dogs.pop(0)
-            return dog
+            return self.cat.pop(0)
 
-    def dequeueAny(self):
-        if len(self.cats) == 0:
-            result = self.dogs.pop(0)
-        else:
-            result = self.cats.pop(0)
-        return result
-
-
-customQueue = Animal_Shelter()
+animal_shelter = Animal_Shelter()
 
 if __name__ == "__main__":
-    customQueue.enqueue('Cat1', 'Cat')
-    customQueue.enqueue('Cat2', 'Cat')
-    customQueue.enqueue('Dog1', 'Dog')
-    customQueue.enqueue('Cat3', 'Cat')
-    customQueue.enqueue('Dog2', 'Dog')
-    print(customQueue.dequeueAny())
+    animal_shelter.enqueue("cat1", "cat")
+    animal_shelter.enqueue("dog1", "dog")
+    animal_shelter.enqueue("cat2", "cat")
+    print(animal_shelter)
+    print(animal_shelter.dequeue_cat())
+    print(animal_shelter)
+    animal_shelter.enqueue("cat3", "cat")
+    print(animal_shelter)
+    print(animal_shelter.dequeue_any())
+    print(animal_shelter)
