@@ -1813,18 +1813,81 @@ class Stack_Using_Linked_List:
 
 stack = Stack_Using_Linked_List()
 # print(stack.is_empty())
-stack.push(1)
-stack.push(10)
-stack.push(11)
-stack.push(90)
-stack.push(99)
-print(stack)
-print("---popped values-----")
-print(stack.pop())
-print(stack.pop())
-print("-----peek value------")
-print(stack.peek())
-print("-----stack-----")
-print(stack)
-stack.delete()
-print(stack)
+# stack.push(1)
+# stack.push(10)
+# stack.push(11)
+# stack.push(90)
+# stack.push(99)
+# print(stack)
+# print("---popped values-----")
+# print(stack.pop())
+# print(stack.pop())
+# print("-----peek value------")
+# print(stack.peek())
+# print("-----stack-----")
+# print(stack)
+# stack.delete()
+# print(stack)
+
+
+class Stack_Three_in_One:
+    def __init__(self, stack_size):
+        self.number_of_stacks = 3
+        self.stack = [0] * (self.number_of_stacks * stack_size)
+        self.sizes = [0] * self.number_of_stacks
+        self.stack_size = stack_size
+
+    def is_full(self, stack_number):
+        if self.sizes[stack_number] == self.stack_size:
+            return True
+        else:
+            return False
+
+    def is_empty(self, stack_number):
+        if self.sizes[stack_number] == 0:
+            return True
+        else:
+            return False
+
+    def index_of_top(self,  stack_number):
+        offset = stack_number * self.stack_size
+        return offset + self.sizes[stack_number] -1
+
+
+    def push(self, value,stack_number):
+        if self.is_full(stack_number):
+            return "Stack is full"
+        else:
+            self.sizes[stack_number] += 1
+            self.stack[self.index_of_top(stack_number)] = value
+
+    def pop(self, stack_number):
+        if self.is_empty(stack_number):
+            return "Stack is empty"
+        else:
+            value = self.stack[self.index_of_top(stack_number)]
+            self.stack[self.index_of_top(stack_number)] = 0
+            return value
+
+    def peek(self, stack_number):
+        if self.is_empty(stack_number):
+            return "Stack is empty"
+        else:
+            return self.stack[self.index_of_top(stack_number)]
+
+    def __str__(self):
+        # value = self.stack.reverse()
+        value = [str(values) for values in self.stack]
+        return "\n".join(value)
+
+
+three_in_one_stack = Stack_Three_in_One(3)
+
+three_in_one_stack.push(4,2)
+three_in_one_stack.push(6,2)
+three_in_one_stack.push(8, 1)
+three_in_one_stack.push(8,0)
+print(three_in_one_stack.peek(0))
+print(three_in_one_stack)
+
+
