@@ -1931,12 +1931,12 @@ class Stack_Min:
 
 stack_min = Stack_Min()
 
-if __name__  == "__main__":
-    print(stack_min.min())
-    stack_min.push(9)
-    stack_min.push(5)
-    stack_min.push(3)
-    print(stack_min.min())
-    stack_min.pop()
-    print(stack_min.min())
+# if __name__  == "__main__":
+#     print(stack_min.min())
+#     stack_min.push(9)
+#     stack_min.push(5)
+#     stack_min.push(3)
+#     print(stack_min.min())
+#     stack_min.pop()
+#     print(stack_min.min())
 
