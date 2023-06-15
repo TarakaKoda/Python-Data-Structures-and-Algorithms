@@ -2,8 +2,6 @@
 Import queue (using Linked List data structure) as a helper function to levelOrder traversal and searching in  Binary Tree
 '''
 from Queue import Queue
-
-
 class Binary_Tree:
     def __init__(self, data):
         self.data = data
@@ -91,5 +89,5 @@ def searching_node(root_node, value):
 
 if __name__ == "__main__":
     levelOrder_traversal(root_node)
-    print(searching_node(root_node, "Tea"))
+    print(searching_node(root_node, "Cola"))
     print(searching_node(root_node, "Chocolate"))
