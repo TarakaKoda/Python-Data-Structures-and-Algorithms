@@ -31,7 +31,7 @@ class Queue:
         else:
             return False
 
-    def push(self, value):
+    def enqueue(self, value):
         new_node = Node(value)
         if self.is_empty():
             self.queue.head = new_node
@@ -42,13 +42,17 @@ class Queue:
             self.queue.tail = new_node
             new_node.next = None
 
-    def pop(self):
+    def dequeue(self):
         if self.is_empty():
             return "Queue is empty"
         else:
-            top_value = self.queue.head
-            self.queue.head.next = self.queue.head.next.next
-            return top_value.value
+            if self.queue.head == self.queue.tail:
+                self.queue.head = None
+                self.queue.tail = None
+            else:
+                top_value = self.queue.head.value
+                self.queue.head = self.queue.head.next
+                return top_value
 
     def peek(self):
         if self.is_empty():
@@ -64,12 +68,16 @@ class Queue:
 queue = Queue()
 
 if __name__ == "__main__":
-    print(queue.is_empty())
-    queue.push(1)
-    queue.push(2)
-    queue.push(4)
-    queue.push(3)
+    # print(queue.is_empty())
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(4)
+    queue.enqueue(3)
     print(queue)
-    print(queue.peek())
-    print(queue.delete())
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    print(queue.dequeue())
     print(queue)
+
