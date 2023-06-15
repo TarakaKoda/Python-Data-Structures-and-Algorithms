@@ -1,4 +1,11 @@
-# Queue using Linked List using as a helper data structure for LevelOrders Traversal
+'''
+Level order traversal, also known as breadth-first traversal, is a popular algorithm for traversing or visiting all nodes
+of a binary tree or a tree-like data structure in a breadth ward motion. In level order traversal, we visit all nodes at
+a given level before moving to the next level.
+
+Note: Queue using Linked List using as a helper data structure for LevelOrders Traversal
+'''
+
 
 class Node:
     def __init__(self, value=None):
@@ -116,7 +123,7 @@ def postOrder_traversal(root_node):
         postOrder_traversal(root_node.right_child)
         print(root_node.data)
 
-def levelOrder_travrsal(root_node):
+def levelOrder_traversal(root_node):
     queue = Queue()
     queue.enqueue(root_node)
     while not (queue.is_empty()):
@@ -137,4 +144,4 @@ if __name__ == "__main__":
     print("\nPostOrder Traversal")
     postOrder_traversal(root_node)
     print("\nLevelOrder Traversal")
-    levelOrder_travrsal(root_node)
+    levelOrder_traversal(root_node)
