@@ -1,70 +1,70 @@
-# Queue using Linked List
+# Queue using Linked List using as a helper data structure for LevelOrders Traversal
+
 class Node:
     def __init__(self, value=None):
         self.value = value
-        self.next = None
+        self.next  = None
 
     def __str__(self):
-        return str(self.value)
+        return self.value
 
-
-class LinkedList:
+class Linked_List:
     def __init__(self):
         self.head = None
         self.tail = None
 
     def __iter__(self):
-        curNode = self.head
-        while curNode:
-            yield curNode
-            curNode = curNode.next
-
+        node  = self.head
+        while node:
+            yield node
+            node = node.next
 
 class Queue:
     def __init__(self):
-        self.linkedList = LinkedList()
+        self.queue = Linked_List()
 
     def __str__(self):
-        values = [str(x) for x in self.linkedList]
-        return ' '.join(values)
-
-    def enqueue(self, value):
-        newNode = Node(value)
-        if self.linkedList.head == None:
-            self.linkedList.head = newNode
-            self.linkedList.tail = newNode
-        else:
-            self.linkedList.tail.next = newNode
-            self.linkedList.tail = newNode
+        values = [str(node.value) for node in self.queue]
+        return " ".join(values)
 
     def is_empty(self):
-        if self.linkedList.head == None:
+        if self.queue.head is None:
             return True
         else:
             return False
 
+    def enqueue(self, value):
+        new_node = Node(value)
+        if self.is_empty():
+            self.queue.head = new_node
+            self.queue.tail = new_node
+            new_node.next = None
+        else:
+            self.queue.tail.next = new_node
+            self.queue.tail = new_node
+            new_node.next = None
+
     def dequeue(self):
         if self.is_empty():
-            return "There is not any node in the Queue"
+            return "The queue is empty"
         else:
-            tempNode = self.linkedList.head
-            if self.linkedList.head == self.linkedList.tail:
-                self.linkedList.head = None
-                self.linkedList.tail = None
+            head_value = self.queue.head.value
+            if self.queue.head == self.queue.tail:
+                self.queue.head = None
+                self.queue.tail = None
             else:
-                self.linkedList.head = self.linkedList.head.next
-            return tempNode
+                self.queue.head = self.queue.head.next
+            return head_value
 
     def peek(self):
         if self.is_empty():
-            return "There is not any node in the Queue"
+            return "queue is empty"
         else:
-            return self.linkedList.head
+            return self.queue.tail.value
 
     def delete(self):
-        self.linkedList.head = None
-        self.linkedList.tail = None
-
+        self.queue.head = None
+        self.queue.tail = None
 
 class Binary_Tree:
     def __init__(self, data):
@@ -95,39 +95,38 @@ right_node.add_children(left_cold_node, right_cold_node)
 def preOrder_traversal(root_node):
     if not root_node:
         return
-    print(root_node.data)
-    preOrder_traversal(root_node.left_child)
-    preOrder_traversal(root_node.right_child)
+    else:
+        print(root_node.data)
+        preOrder_traversal(root_node.left_child)
+        preOrder_traversal(root_node.right_child)
 
 def inOrder_traversal(root_node):
     if not root_node:
         return
-    preOrder_traversal(root_node.left_child)
-    print(root_node.data)
-    preOrder_traversal(root_node.right_child)
+    else:
+        inOrder_traversal(root_node.left_child)
+        print(root_node.data)
+        inOrder_traversal(root_node.right_child)
 
 def postOrder_traversal(root_node):
     if not root_node:
         return
-    preOrder_traversal(root_node.left_child)
-    preOrder_traversal(root_node.right_child)
-    print(root_node.data)
-
-
-def levelOrderTraversal(rootNode):
-    if not rootNode:
-        return
     else:
-        customQueue = Queue()
-        customQueue.enqueue(rootNode)
-        while not (customQueue.is_empty()):
-            root = customQueue.dequeue()
-            print(root.value.data)
-            if (root.value.leftChild is not None):
-                customQueue.enqueue(root.value.leftChild)
+        postOrder_traversal(root_node.left_child)
+        postOrder_traversal(root_node.right_child)
+        print(root_node.data)
 
-            if (root.value.rightChild is not None):
-                customQueue.enqueue(root.value.rightChild)
+def levelOrder_travrsal(root_node):
+    queue = Queue()
+    queue.enqueue(root_node)
+    while not (queue.is_empty()):
+        root = queue.dequeue()
+        print(root.data)
+        if root.left_child:
+            queue.enqueue(root.left_child)
+        if root.right_child:
+            queue.enqueue(root.right_child)
+
 
 if __name__ == "__main__":
     print(__doc__)
@@ -137,5 +136,5 @@ if __name__ == "__main__":
     inOrder_traversal(root_node)
     print("\nPostOrder Traversal")
     postOrder_traversal(root_node)
-    print("Level Order Traversal")
-    levelOrderTraversal(root_node)
+    print("\nLevelOrder Traversal")
+    levelOrder_travrsal(root_node)
