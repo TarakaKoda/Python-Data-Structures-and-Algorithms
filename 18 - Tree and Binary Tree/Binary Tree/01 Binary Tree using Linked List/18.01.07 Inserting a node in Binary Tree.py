@@ -162,7 +162,7 @@ def inserting_node(root_node, new_node):
             if root.right_child is not None:
                 queue.enqueue(root.right_child)
             else:
-                root_node.right_child = new_node
+                root.right_child = new_node
                 return "New node has been added"
 
 if __name__ == "__main__":
