@@ -2332,12 +2332,52 @@ class Binary_Tree:
                     return "Found"
             return "value does not exist in Binary Tree"
 
+    def preOrder_traversal(self, index):
+        if index > self.last_used_index:
+            return
+        else:
+            print(self.list[index])
+            self.preOrder_traversal(index*2)
+            self.preOrder_traversal(index*2+1)
+
+    def inOrder_traversal(self, index):
+        if index > self.last_used_index:
+            return
+        else:
+            self.inOrder_traversal(index * 2)
+            print(self.list[index])
+            self.inOrder_traversal(index * 2 + 1)
+
+    def postOrder_traversal(self, index):
+        if index > self.last_used_index:
+            return
+        else:
+            self.postOrder_traversal(index * 2)
+            self.postOrder_traversal(index * 2 + 1)
+            print(self.list[index])
+
+    def levelOrder_traversal(self, index):
+        if index > self.last_used_index:
+            return
+        else:
+            for i in range(index, self.last_used_index+1):
+                print(self.list[i])
+
+
 binary_tree = Binary_Tree(8)
 binary_tree.insert("Drinks")
 binary_tree.insert("Hot")
+binary_tree.insert("Cold")
+binary_tree.insert("Tea")
+binary_tree.insert("Coffee")
 binary_tree.insert("Soda")
+binary_tree.insert("Cola")
+
 
 if __name__ == "__main__":
-    print(binary_tree.searching("Soda"))
+    binary_tree.preOrder_traversal(1)
+    binary_tree.inOrder_traversal(1)
+    binary_tree.postOrder_traversal(1)
+    binary_tree.levelOrder_traversal(1)
 
 
