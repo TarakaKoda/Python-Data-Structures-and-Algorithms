@@ -2303,10 +2303,18 @@ def insert_node(root_node, node):
                 return "New node has been inserted"
 
 new_node = Binary_Tree("Biscuit")
+#
+# if __name__ == "__main__":
+#     levelOrder_traversal(root_node)
+#     print(insert_node(root_node, new_node))
+#     levelOrder_traversal(root_node)
 
-if __name__ == "__main__":
-    levelOrder_traversal(root_node)
-    print(insert_node(root_node, new_node))
-    levelOrder_traversal(root_node)
+class Binary_Tree:
+    def __init__(self, size):
+        self.list = [None] * size
+        self.last_used_index = 0
+        self.maximum_size = size
+
+new_tree = Binary_Tree(8)
 
 
