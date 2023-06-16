@@ -2323,18 +2323,21 @@ class Binary_Tree:
             self.last_used_index += 1
             return "Successfully inserted"
 
-    def __str__(self):
-        values = [str(value) for value in self.list]
-        return "\n".join(values)
+    def searching(self, value):
+        if self.last_used_index == 0:
+            return "Binary Tree is empty"
+        else:
+            for i in range(1, self.maximum_size):
+                if self.list[i] == value:
+                    return "Found"
+            return "value does not exist in Binary Tree"
 
-binary_tree = Binary_Tree(5)
-
+binary_tree = Binary_Tree(8)
 binary_tree.insert("Drinks")
 binary_tree.insert("Hot")
-binary_tree.insert("Cold")
-binary_tree.insert("Tea")
+binary_tree.insert("Soda")
 
 if __name__ == "__main__":
-    print(binary_tree)
+    print(binary_tree.searching("Soda"))
 
 
