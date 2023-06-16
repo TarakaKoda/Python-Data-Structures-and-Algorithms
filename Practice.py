@@ -2363,6 +2363,20 @@ class Binary_Tree:
             for i in range(index, self.last_used_index+1):
                 print(self.list[i])
 
+    def delete_node(self, value):
+        if self.last_used_index == 0:
+            return "There is not node to delete in binary tree"
+        for i in range(self.last_used_index+1):
+            if self.list[i] == value:
+                self.list[i] = self.list[self.last_used_index]
+                self.list[self.last_used_index] = None
+                self.last_used_index -= 1
+                return "The node has been successfully deleted"
+
+    def delete_entire_binary_tree(self):
+        self.list = None
+        return "Successfully deleted entire binary tree"
+
 
 binary_tree = Binary_Tree(8)
 binary_tree.insert("Drinks")
@@ -2379,5 +2393,7 @@ if __name__ == "__main__":
     binary_tree.inOrder_traversal(1)
     binary_tree.postOrder_traversal(1)
     binary_tree.levelOrder_traversal(1)
+    binary_tree.delete_node("Tea")
+    binary_tree.delete_entire_binary_tree()
 
 
