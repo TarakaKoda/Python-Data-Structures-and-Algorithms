@@ -2016,384 +2016,385 @@ class Binary_Tree:
 
 # from Queue import Queue
 
-class Binary_Tree:
-    def __init__(self, data):
-        self.data = data
-        self.left_child = None
-        self.right_child = None
-
-    def add_children(self, left_child, right_child):
-        self.left_child = left_child
-        self.right_child = right_child
-
-
-
-root_node = Binary_Tree("Drinks")
-left_node = Binary_Tree("Hot")
-right_node = Binary_Tree("Cold")
-
-root_node.add_children(left_node, right_node)
-
-left_hot_node = Binary_Tree("Tea")
-right_hot_node = Binary_Tree("Coffee")
-
-left_node.add_children(left_hot_node, right_hot_node)
-
-left_cold_node = Binary_Tree("Soda")
-right_cold_node = Binary_Tree("Cola")
-
-right_node.add_children(left_cold_node, right_cold_node)
-
-# PreOder Traversal: root node -> left child -> right child
-def preOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        print(root_node.data)
-        preOrder_traversal(root_node.left_child)
-        preOrder_traversal(root_node.right_child)
-
-# InOrder Traversal: left child -> root node -> right child
-def inOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        inOrder_traversal(root_node.left_child)
-        print(root_node.data)
-        inOrder_traversal(root_node.right_child)
-
-# PostOrder Traversal: left child -> right child -> root node
-def postOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        postOrder_traversal(root_node.left_child)
-        postOrder_traversal(root_node.right_child)
-        print(root_node.data)
-
-# LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
-def levelOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        queue = Queue()
-        queue.enqueue(root_node)
-        while not queue.is_empty():
-            root = queue.dequeue()
-            print(root.data)
-            if root.left_child:
-                queue.enqueue(root.left_child)
-            if root.right_child:
-                queue.enqueue(root.right_child)
-
-
-# if __name__ == "__main__":
-#     print("PreOrder Traversal:")
-#     preOrder_traversal(root_node)
-#     print("\nInOrder Traversal:")
-#     inOrder_traversal(root_node)
-#     print("\nPostOrder Traversal:")
-#     postOrder_traversal(root_node)
-#     print("\nLevelOrder Traversal:")
-#     levelOrder_traversal(root_node)
-
-'''
-Import queue (using Linked List data structure) as a helper function to levelOrder traversal and searching in  Binary Tree
-'''
-from Queue import Queue
-class Binary_Tree:
-    def __init__(self, data):
-        self.data = data
-        self.left_child = None
-        self.right_child = None
-
-    def add_children(self, left_child, right_child):
-        self.left_child = left_child
-        self.right_child = right_child
-
-
-root_node = Binary_Tree("Drinks")
-left_node = Binary_Tree("Hot")
-right_node = Binary_Tree("Cold")
-
-root_node.add_children(left_node, right_node)
-
-left_hot_node = Binary_Tree("Tea")
-right_hot_node = Binary_Tree("Coffee")
-
-left_node.add_children(left_hot_node, right_hot_node)
-
-left_cold_node = Binary_Tree("Soda")
-right_cold_node = Binary_Tree("Cola")
-
-right_node.add_children(left_cold_node, right_cold_node)
-
-
-# PreOder Traversal: root node -> left child -> right child
-def preOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        print(root_node.data)
-        preOrder_traversal(root_node.left_child)
-        preOrder_traversal(root_node.right_child)
-
-# InOrder Traversal: left child -> root node -> right child
-def inOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        inOrder_traversal(root_node.left_child)
-        print(root_node.data)
-        inOrder_traversal(root_node.right_child)
-
-# PostOrder Traversal: left child -> right child -> root node
-def postOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        postOrder_traversal(root_node.left_child)
-        postOrder_traversal(root_node.right_child)
-        print(root_node.data)
-
-# LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
-def levelOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        queue = Queue()
-        queue.enqueue(root_node)
-        while not queue.is_empty():
-            root = queue.dequeue()
-            print(root.data)
-            if root.left_child:
-                queue.enqueue(root.left_child)
-            if root.right_child:
-                queue.enqueue(root.right_child)
-
-def searching_node(root_node, value):
-    if not root_node:
-        return
-    queue = Queue()
-    queue.enqueue(root_node)
-    while not queue.is_empty():
-        root = queue.dequeue()
-        if root.data == value:
-            return "Success"
-        if root.left_child:
-            queue.enqueue(root.left_child)
-        if root.right_child:
-            queue.enqueue(root.right_child)
-    return f"{value} does not exit in the Binary Tree"
-
-# if __name__ == "__main__":
-#     levelOrder_traversal(root_node)
-#     print(searching_node(root_node, "Cola"))
-#     print(searching_node(root_node, "Chocolate"))
-
-'''
-Import queue (using Linked List data structure) as a helper function to levelOrder traversal, searching, inserting in  Binary Tree
-'''
-from Queue import Queue
-
-
-class Binary_Tree:
-    def __init__(self, data):
-        self.data = data
-        self.left_child = None
-        self.right_child = None
-
-    def add_children(self, left_child, right_child):
-        self.left_child = left_child
-        self.right_child = right_child
-
-
-root_node = Binary_Tree("Drinks")
-left_node = Binary_Tree("Hot")
-right_node = Binary_Tree("Cold")
-
-root_node.add_children(left_node, right_node)
-
-left_hot_node = Binary_Tree("Tea")
-right_hot_node = Binary_Tree("Coffee")
-
-left_node.add_children(left_hot_node, right_hot_node)
-
-left_cold_node = Binary_Tree("Soda")
-right_cold_node = Binary_Tree("Cola")
-
-right_node.add_children(left_cold_node, right_cold_node)
-
-
-# PreOder Traversal: root node -> left child -> right child
-def preOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        print(root_node.data)
-        preOrder_traversal(root_node.left_child)
-        preOrder_traversal(root_node.right_child)
-
-# InOrder Traversal: left child -> root node -> right child
-def inOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        inOrder_traversal(root_node.left_child)
-        print(root_node.data)
-        inOrder_traversal(root_node.right_child)
-
-# PostOrder Traversal: left child -> right child -> root node
-def postOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        postOrder_traversal(root_node.left_child)
-        postOrder_traversal(root_node.right_child)
-        print(root_node.data)
-
-# LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
-def levelOrder_traversal(root_node):
-    if not root_node:
-        return
-    else:
-        queue = Queue()
-        queue.enqueue(root_node)
-        while not queue.is_empty():
-            root = queue.dequeue()
-            print(root.data)
-            if root.left_child:
-                queue.enqueue(root.left_child)
-            if root.right_child:
-                queue.enqueue(root.right_child)
-
-def searching_node(root_node, value):
-    if not root_node:
-        return
-    queue = Queue()
-    queue.enqueue(root_node)
-    while not queue.is_empty():
-        root = queue.dequeue()
-        if root.data == value:
-            return "Success"
-        if root.left_child:
-            queue.enqueue(root.left_child)
-        if root.right_child:
-            queue.enqueue(root.right_child)
-    return f"{value} does not exit in the Binary Tree"
-
-def insert_node(root_node, node):
-    if not root_node:
-        root_node.data = node
-        return "New node inserted"
-    else:
-        queue = Queue()
-        queue.enqueue(root_node)
-        while not queue.is_empty():
-            root = queue.dequeue()
-            if root.left_child:
-                queue.enqueue(root.left_child)
-            else:
-                root.left_child = node
-                return "New node has been inserted"
-            if root.right_child:
-                queue.enqueue(root.right_child)
-            else:
-                root.right_child = node
-                return "New node has been inserted"
-
-new_node = Binary_Tree("Biscuit")
+# class Binary_Tree:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left_child = None
+#         self.right_child = None
+#
+#     def add_children(self, left_child, right_child):
+#         self.left_child = left_child
+#         self.right_child = right_child
+#
+#
+#
+# root_node = Binary_Tree("Drinks")
+# left_node = Binary_Tree("Hot")
+# right_node = Binary_Tree("Cold")
+#
+# root_node.add_children(left_node, right_node)
+#
+# left_hot_node = Binary_Tree("Tea")
+# right_hot_node = Binary_Tree("Coffee")
+#
+# left_node.add_children(left_hot_node, right_hot_node)
+#
+# left_cold_node = Binary_Tree("Soda")
+# right_cold_node = Binary_Tree("Cola")
+#
+# right_node.add_children(left_cold_node, right_cold_node)
+#
+# # PreOder Traversal: root node -> left child -> right child
+# def preOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         print(root_node.data)
+#         preOrder_traversal(root_node.left_child)
+#         preOrder_traversal(root_node.right_child)
+#
+# # InOrder Traversal: left child -> root node -> right child
+# def inOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         inOrder_traversal(root_node.left_child)
+#         print(root_node.data)
+#         inOrder_traversal(root_node.right_child)
+#
+# # PostOrder Traversal: left child -> right child -> root node
+# def postOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         postOrder_traversal(root_node.left_child)
+#         postOrder_traversal(root_node.right_child)
+#         print(root_node.data)
+#
+# # LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
+# def levelOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         queue = Queue()
+#         queue.enqueue(root_node)
+#         while not queue.is_empty():
+#             root = queue.dequeue()
+#             print(root.data)
+#             if root.left_child:
+#                 queue.enqueue(root.left_child)
+#             if root.right_child:
+#                 queue.enqueue(root.right_child)
+#
+#
+# # if __name__ == "__main__":
+# #     print("PreOrder Traversal:")
+# #     preOrder_traversal(root_node)
+# #     print("\nInOrder Traversal:")
+# #     inOrder_traversal(root_node)
+# #     print("\nPostOrder Traversal:")
+# #     postOrder_traversal(root_node)
+# #     print("\nLevelOrder Traversal:")
+# #     levelOrder_traversal(root_node)
+#
+# '''
+# Import queue (using Linked List data structure) as a helper function to levelOrder traversal and searching in  Binary Tree
+# '''
+# # from Queue import Queue
+# class Binary_Tree:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left_child = None
+#         self.right_child = None
+#
+#     def add_children(self, left_child, right_child):
+#         self.left_child = left_child
+#         self.right_child = right_child
+#
+#
+# root_node = Binary_Tree("Drinks")
+# left_node = Binary_Tree("Hot")
+# right_node = Binary_Tree("Cold")
+#
+# root_node.add_children(left_node, right_node)
+#
+# left_hot_node = Binary_Tree("Tea")
+# right_hot_node = Binary_Tree("Coffee")
+#
+# left_node.add_children(left_hot_node, right_hot_node)
+#
+# left_cold_node = Binary_Tree("Soda")
+# right_cold_node = Binary_Tree("Cola")
+#
+# right_node.add_children(left_cold_node, right_cold_node)
+#
+#
+# # PreOder Traversal: root node -> left child -> right child
+# def preOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         print(root_node.data)
+#         preOrder_traversal(root_node.left_child)
+#         preOrder_traversal(root_node.right_child)
+#
+# # InOrder Traversal: left child -> root node -> right child
+# def inOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         inOrder_traversal(root_node.left_child)
+#         print(root_node.data)
+#         inOrder_traversal(root_node.right_child)
+#
+# # PostOrder Traversal: left child -> right child -> root node
+# def postOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         postOrder_traversal(root_node.left_child)
+#         postOrder_traversal(root_node.right_child)
+#         print(root_node.data)
+#
+# # LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
+# def levelOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         queue = Queue()
+#         queue.enqueue(root_node)
+#         while not queue.is_empty():
+#             root = queue.dequeue()
+#             print(root.data)
+#             if root.left_child:
+#                 queue.enqueue(root.left_child)
+#             if root.right_child:
+#                 queue.enqueue(root.right_child)
+#
+# def searching_node(root_node, value):
+#     if not root_node:
+#         return
+#     queue = Queue()
+#     queue.enqueue(root_node)
+#     while not queue.is_empty():
+#         root = queue.dequeue()
+#         if root.data == value:
+#             return "Success"
+#         if root.left_child:
+#             queue.enqueue(root.left_child)
+#         if root.right_child:
+#             queue.enqueue(root.right_child)
+#     return f"{value} does not exit in the Binary Tree"
+#
+# # if __name__ == "__main__":
+# #     levelOrder_traversal(root_node)
+# #     print(searching_node(root_node, "Cola"))
+# #     print(searching_node(root_node, "Chocolate"))
+#
+# '''
+# Import queue (using Linked List data structure) as a helper function to levelOrder traversal, searching, inserting in  Binary Tree
+# '''
+# # from Queue import Queue
+#
+#
+# class Binary_Tree:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left_child = None
+#         self.right_child = None
+#
+#     def add_children(self, left_child, right_child):
+#         self.left_child = left_child
+#         self.right_child = right_child
+#
+#
+# root_node = Binary_Tree("Drinks")
+# left_node = Binary_Tree("Hot")
+# right_node = Binary_Tree("Cold")
+#
+# root_node.add_children(left_node, right_node)
+#
+# left_hot_node = Binary_Tree("Tea")
+# right_hot_node = Binary_Tree("Coffee")
+#
+# left_node.add_children(left_hot_node, right_hot_node)
+#
+# left_cold_node = Binary_Tree("Soda")
+# right_cold_node = Binary_Tree("Cola")
+#
+# right_node.add_children(left_cold_node, right_cold_node)
+#
+#
+# # PreOder Traversal: root node -> left child -> right child
+# def preOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         print(root_node.data)
+#         preOrder_traversal(root_node.left_child)
+#         preOrder_traversal(root_node.right_child)
+#
+# # InOrder Traversal: left child -> root node -> right child
+# def inOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         inOrder_traversal(root_node.left_child)
+#         print(root_node.data)
+#         inOrder_traversal(root_node.right_child)
+#
+# # PostOrder Traversal: left child -> right child -> root node
+# def postOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         postOrder_traversal(root_node.left_child)
+#         postOrder_traversal(root_node.right_child)
+#         print(root_node.data)
+#
+# # LevelOrder Traversal: we visit all nodes at a given level before moving to the next level.
+# def levelOrder_traversal(root_node):
+#     if not root_node:
+#         return
+#     else:
+#         queue = Queue()
+#         queue.enqueue(root_node)
+#         while not queue.is_empty():
+#             root = queue.dequeue()
+#             print(root.data)
+#             if root.left_child:
+#                 queue.enqueue(root.left_child)
+#             if root.right_child:
+#                 queue.enqueue(root.right_child)
+#
+# def searching_node(root_node, value):
+#     if not root_node:
+#         return
+#     queue = Queue()
+#     queue.enqueue(root_node)
+#     while not queue.is_empty():
+#         root = queue.dequeue()
+#         if root.data == value:
+#             return "Success"
+#         if root.left_child:
+#             queue.enqueue(root.left_child)
+#         if root.right_child:
+#             queue.enqueue(root.right_child)
+#     return f"{value} does not exit in the Binary Tree"
+#
+# def insert_node(root_node, node):
+#     if not root_node:
+#         root_node.data = node
+#         return "New node inserted"
+#     else:
+#         queue = Queue()
+#         queue.enqueue(root_node)
+#         while not queue.is_empty():
+#             root = queue.dequeue()
+#             if root.left_child:
+#                 queue.enqueue(root.left_child)
+#             else:
+#                 root.left_child = node
+#                 return "New node has been inserted"
+#             if root.right_child:
+#                 queue.enqueue(root.right_child)
+#             else:
+#                 root.right_child = node
+#                 return "New node has been inserted"
+#
+# new_node = Binary_Tree("Biscuit")
 #
 # if __name__ == "__main__":
 #     levelOrder_traversal(root_node)
 #     print(insert_node(root_node, new_node))
 #     levelOrder_traversal(root_node)
 
-class Binary_Tree:
-    def __init__(self, size):
-        self.list = [None] * size
-        self.last_used_index = 0
-        self.maximum_size = size
+# class Binary_Tree:
+#     def __init__(self, size):
+#         self.list = [None] * size
+#         self.last_used_index = 0
+#         self.maximum_size = size
+#
+#     def insert(self, value):
+#         if self.last_used_index+1 == self.maximum_size:
+#             return "Tree is full"
+#         else:
+#             self.list[self.last_used_index+1] = value
+#             self.last_used_index += 1
+#             return "Successfully inserted"
+#
+#     def searching(self, value):
+#         if self.last_used_index == 0:
+#             return "Binary Tree is empty"
+#         else:
+#             for i in range(1, self.maximum_size):
+#                 if self.list[i] == value:
+#                     return "Found"
+#             return "value does not exist in Binary Tree"
+#
+#     def preOrder_traversal(self, index):
+#         if index > self.last_used_index:
+#             return
+#         else:
+#             print(self.list[index])
+#             self.preOrder_traversal(index*2)
+#             self.preOrder_traversal(index*2+1)
+#
+#     def inOrder_traversal(self, index):
+#         if index > self.last_used_index:
+#             return
+#         else:
+#             self.inOrder_traversal(index * 2)
+#             print(self.list[index])
+#             self.inOrder_traversal(index * 2 + 1)
+#
+#     def postOrder_traversal(self, index):
+#         if index > self.last_used_index:
+#             return
+#         else:
+#             self.postOrder_traversal(index * 2)
+#             self.postOrder_traversal(index * 2 + 1)
+#             print(self.list[index])
+#
+#     def levelOrder_traversal(self, index):
+#         if index > self.last_used_index:
+#             return
+#         else:
+#             for i in range(index, self.last_used_index+1):
+#                 print(self.list[i])
+#
+#     def delete_node(self, value):
+#         if self.last_used_index == 0:
+#             return "There is not node to delete in binary tree"
+#         for i in range(self.last_used_index+1):
+#             if self.list[i] == value:
+#                 self.list[i] = self.list[self.last_used_index]
+#                 self.list[self.last_used_index] = None
+#                 self.last_used_index -= 1
+#                 return "The node has been successfully deleted"
+#
+#     def delete_entire_binary_tree(self):
+#         self.list = None
+#         return "Successfully deleted entire binary tree"
+#
+#
+# binary_tree = Binary_Tree(8)
+# binary_tree.insert("Drinks")
+# binary_tree.insert("Hot")
+# binary_tree.insert("Cold")
+# binary_tree.insert("Tea")
+# binary_tree.insert("Coffee")
+# binary_tree.insert("Soda")
+# binary_tree.insert("Cola")
+#
+#
+#     binary_tree.preOrder_traversal(1)
+#     binary_tree.inOrder_traversal(1)
+#     binary_tree.postOrder_traversal(1)
+#     binary_tree.levelOrder_traversal(1)
+#     binary_tree.delete_node("Tea")
+#     binary_tree.delete_entire_binary_tree()
 
-    def insert(self, value):
-        if self.last_used_index+1 == self.maximum_size:
-            return "Tree is full"
-        else:
-            self.list[self.last_used_index+1] = value
-            self.last_used_index += 1
-            return "Successfully inserted"
 
-    def searching(self, value):
-        if self.last_used_index == 0:
-            return "Binary Tree is empty"
-        else:
-            for i in range(1, self.maximum_size):
-                if self.list[i] == value:
-                    return "Found"
-            return "value does not exist in Binary Tree"
-
-    def preOrder_traversal(self, index):
-        if index > self.last_used_index:
-            return
-        else:
-            print(self.list[index])
-            self.preOrder_traversal(index*2)
-            self.preOrder_traversal(index*2+1)
-
-    def inOrder_traversal(self, index):
-        if index > self.last_used_index:
-            return
-        else:
-            self.inOrder_traversal(index * 2)
-            print(self.list[index])
-            self.inOrder_traversal(index * 2 + 1)
-
-    def postOrder_traversal(self, index):
-        if index > self.last_used_index:
-            return
-        else:
-            self.postOrder_traversal(index * 2)
-            self.postOrder_traversal(index * 2 + 1)
-            print(self.list[index])
-
-    def levelOrder_traversal(self, index):
-        if index > self.last_used_index:
-            return
-        else:
-            for i in range(index, self.last_used_index+1):
-                print(self.list[i])
-
-    def delete_node(self, value):
-        if self.last_used_index == 0:
-            return "There is not node to delete in binary tree"
-        for i in range(self.last_used_index+1):
-            if self.list[i] == value:
-                self.list[i] = self.list[self.last_used_index]
-                self.list[self.last_used_index] = None
-                self.last_used_index -= 1
-                return "The node has been successfully deleted"
-
-    def delete_entire_binary_tree(self):
-        self.list = None
-        return "Successfully deleted entire binary tree"
-
-
-binary_tree = Binary_Tree(8)
-binary_tree.insert("Drinks")
-binary_tree.insert("Hot")
-binary_tree.insert("Cold")
-binary_tree.insert("Tea")
-binary_tree.insert("Coffee")
-binary_tree.insert("Soda")
-binary_tree.insert("Cola")
-
-
-if __name__ == "__main__":
-    binary_tree.preOrder_traversal(1)
-    binary_tree.inOrder_traversal(1)
-    binary_tree.postOrder_traversal(1)
-    binary_tree.levelOrder_traversal(1)
-    binary_tree.delete_node("Tea")
-    binary_tree.delete_entire_binary_tree()
 
 
