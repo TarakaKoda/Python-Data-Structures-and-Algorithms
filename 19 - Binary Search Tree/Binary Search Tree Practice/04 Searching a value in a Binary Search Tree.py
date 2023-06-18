@@ -64,7 +64,7 @@ def searching(root_node, value):
     elif root_node.data == value:
         print("value found")
     elif value < root_node.data:
-        if root_node.left_child == value:
+        if root_node.left_child.data == value:
             print("value found")
         else:
             searching(root_node.left_child, value)
@@ -84,6 +84,6 @@ if __name__  ==  "__main__":
     insert(binary_search_tree, 50)
     insert(binary_search_tree, 50)
     postOrder_traversal(binary_search_tree)
-    searching(binary_search_tree, 10)
+    searching(binary_search_tree, 50)
 
 
