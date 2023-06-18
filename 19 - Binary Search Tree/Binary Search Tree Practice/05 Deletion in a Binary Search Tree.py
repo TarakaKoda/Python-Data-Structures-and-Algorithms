@@ -79,41 +79,38 @@ def searching(root_node, value):
         else:
             searching(root_node.right_child, value)
 
-def minValueNode(bstNode):
-    current = bstNode
-    while (current.left_child is not None):
+def minimum_value(binary_search_tree):
+    current = binary_search_tree
+    while current.left_child is not None:
         current = current.left_child
     return current
 
-def delete_node(rootNode, nodeValue):
-    if rootNode is None:
-        return rootNode
-    if nodeValue < rootNode.data:
-        rootNode.left_child = delete_node(rootNode.left_child, nodeValue)
-    elif nodeValue > rootNode.data:
-        rootNode.right_child = delete_node(rootNode.right_child, nodeValue)
+def delete_node(root_node, value):
+    if root_node is None:
+        return None
+    elif value < root_node.data:
+        root_node.left_child = delete_node(root_node.left_child, value)
+    elif value > root_node.data:
+        root_node.right_child = delete_node(root_node.right_child, value)
     else:
-        if rootNode.left_child is None:
-            temp = rootNode.right_child
-            rootNode = None
+        if root_node.left_child is None:
+            temp = root_node.right_child
+            root_node = None
+            return temp
+        if root_node.right_child is None:
+            temp = root_node.left_child
+            root_node = None
             return temp
 
-        if rootNode.right_child is None:
-            temp = rootNode.left_child
-            rootNode = None
-            return temp
+        temp = minimum_value(root_node.right_child)
+        root_node.data = temp.data
+        root_node.right_child = delete_node(root_node.right_child, temp.data)
+    return root_node
 
-        temp = minValueNode(rootNode.right_child)
-        rootNode.data = temp.data
-        rootNode.right_child = delete_node(rootNode.right_child, temp.data)
-    return rootNode
-
-
-def delete_entire_binary_search_tree(rootNode):
-    rootNode.data = None
-    rootNode.left_child = None
-    rootNode.right_child = None
-    return "The BST has been successfully deleted"
+def delete_entire_binary_search_tree(binary_search_tree):
+    binary_search_tree.data = None
+    binary_search_tree.left_child = None
+    binary_search_tree.right_child = None
 
 binary_search_tree = Binary_Search_Tree(None)
 
