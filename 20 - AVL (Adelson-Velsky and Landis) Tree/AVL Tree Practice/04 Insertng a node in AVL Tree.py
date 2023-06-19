@@ -124,5 +124,9 @@ def insert_node(root_node, node_value):
 avl_tree = AVL_Tree(25)
 
 if __name__ == "__main__":
-    insert_node(avl_tree, 80)
+    avl_tree = insert_node(avl_tree, 30)
+    avl_tree = insert_node(avl_tree, 40)
+    avl_tree = insert_node(avl_tree, 50)
+    avl_tree = insert_node(avl_tree, 60)
+    avl_tree = insert_node(avl_tree, 70)
     levelOrder_traversal(avl_tree)
