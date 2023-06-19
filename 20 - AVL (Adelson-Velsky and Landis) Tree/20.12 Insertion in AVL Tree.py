@@ -94,7 +94,7 @@ def get_balance(root_node):
 def insert_node(root_node, node_value):
     if not root_node:
         return AVL_Tree(node_value)
-    elif node_value < root_node.data:
+    elif node_value <= root_node.data:
         root_node.left_child = insert_node(root_node.left_child, node_value)
     else:
         root_node.right_child = insert_node(root_node.right_child, node_value)
@@ -117,5 +117,9 @@ def insert_node(root_node, node_value):
 avl_tree = AVL_Tree(25)
 
 if __name__ == "__main__":
-    insert_node(avl_tree, 80)
+    avl_tree = insert_node(avl_tree, 30)
+    avl_tree = insert_node(avl_tree, 40)
+    avl_tree = insert_node(avl_tree, 50)
+    avl_tree = insert_node(avl_tree, 60)
+    avl_tree = insert_node(avl_tree, 80)
     levelOrder_traversal(avl_tree)
