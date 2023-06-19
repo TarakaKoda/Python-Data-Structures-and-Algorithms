@@ -79,29 +79,28 @@ def searching(root_node, value):
         else:
             searching(root_node.right_child, value)
 
-def minimum_value(binary_search_tree):
-    current = binary_search_tree
-    while current.left_child is not None:
-        current = current.left_child
-    return current
+def minimum_value(root_node):
+    if root_node is None:
+        return
+    else:
+        current = root_node
+        while not current.left_child:
+            current = current.left_child
+        return current
 
 def delete_node(root_node, value):
     if root_node is None:
-        return None
-    elif value < root_node.data:
+        return root_node
+    if value < root_node.data:
         root_node.left_child = delete_node(root_node.left_child, value)
     elif value > root_node.data:
         root_node.right_child = delete_node(root_node.right_child, value)
     else:
         if root_node.left_child is None:
-            temp = root_node.right_child
-            root_node = None
-            return temp
-        if root_node.right_child is None:
-            temp = root_node.left_child
-            root_node = None
-            return temp
-
+            return root_node.right_chid
+        else:
+            if root_node.right_child is None:
+                return root_node.left_child
         temp = minimum_value(root_node.right_child)
         root_node.data = temp.data
         root_node.right_child = delete_node(root_node.right_child, temp.data)
@@ -123,8 +122,8 @@ if __name__ == "__main__":
     levelOrder_traversal(binary_search_tree)
     delete_node(binary_search_tree, 40)
     levelOrder_traversal(binary_search_tree)
-    delete_entire_binary_search_tree(binary_search_tree)
-    levelOrder_traversal(binary_search_tree)
+    # delete_entire_binary_search_tree(binary_search_tree)
+    # levelOrder_traversal(binary_search_tree)
 
 
 
