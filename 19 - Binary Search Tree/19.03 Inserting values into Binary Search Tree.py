@@ -45,7 +45,7 @@ class Binary_Search_Tree:
 
 def insert(root_node, value):
     if root_node.data is None:
-        root_node.data = None
+        root_node.data = value
     elif value <= root_node.data:
         if root_node.left_child is None:
             root_node.left_child = Binary_Search_Tree(value)
@@ -58,12 +58,31 @@ def insert(root_node, value):
             insert(root_node.right_child, value)
     return "New value is successfully inserted"
 
+from Queue import Queue
+
+def levelOrder_Traversal(root_node):
+    if not root_node:
+        return
+    else:
+        queue = Queue()
+        queue.enqueue(root_node)
+        while not queue.is_empty():
+            root = queue.dequeue()
+            print(root.data)
+            if root.left_child:
+                queue.enqueue(root.left_child)
+            if root.right_child:
+                queue.enqueue(root.right_child)
+
 binary_search_tree = Binary_Search_Tree(80)
 
 if __name__ == "__main__":
-    print(insert(binary_search_tree,50))
-    print(insert(binary_search_tree,60))
-    print(binary_search_tree.data)
-    print(binary_search_tree.left_child.data)
+    insert(binary_search_tree,50)
+    insert(binary_search_tree,40)
+    insert(binary_search_tree,60)
+    insert(binary_search_tree,20)
+    levelOrder_Traversal(binary_search_tree)
+
+
 
 
