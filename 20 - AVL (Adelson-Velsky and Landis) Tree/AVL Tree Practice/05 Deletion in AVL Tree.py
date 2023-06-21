@@ -1,174 +1,168 @@
-#   Created by Elshad Karimov
-#   Copyright © 2021 AppMillers. All rights reserved.
-
-import Queue as queue
-
-
-class AVLNode:
+from Queue import Queue
+class AVL_Tree:
     def __init__(self, data):
         self.data = data
-        self.leftChild = None
-        self.rightChild = None
+        self.left_child = None
+        self.right_child = None
         self.height = 1
 
-
-def preOrderTraversal(rootNode):
-    if not rootNode:
-        return
-    print(rootNode.data)
-    preOrderTraversal(rootNode.leftChild)
-    preOrderTraversal(rootNode.rightChild)
-
-
-def inOrderTraversal(rootNode):
-    if not rootNode:
-        return
-    inOrderTraversal(rootNode.leftChild)
-    print(rootNode.data)
-    inOrderTraversal(rootNode.rightChild)
-
-
-def postOrderTraversal(rootNode):
-    if not rootNode:
-        return
-    postOrderTraversal(rootNode.leftChild)
-    postOrderTraversal(rootNode.rightChild)
-    print(rootNode.data)
-
-
-def levelOrderTraversal(rootNode):
-    if not rootNode:
+def preOrder_traversal(root_node):
+    if root_node is None:
         return
     else:
-        customQueue = queue.Queue()
-        customQueue.enqueue(rootNode)
-        while not (customQueue.is_empty()):
-            root = customQueue.dequeue()
+        print(root_node.data)
+        preOrder_traversal(root_node.left_child)
+        preOrder_traversal(root_node.right_child)
+
+def inOrder_traversal(root_node):
+    if root_node is None:
+        return
+    else:
+        inOrder_traversal(root_node.left_child)
+        print(root_node.data)
+        inOrder_traversal(root_node.right_child)
+
+def postOrder_traversal(root_node):
+    if root_node is None:
+        return
+    else:
+        postOrder_traversal(root_node.left_child)
+        postOrder_traversal(root_node.right_child)
+        print(root_node)
+
+def levelOrder_traversal(root_node):
+    if not root_node:
+        return
+    else:
+        queue = Queue()
+        queue.enqueue(root_node)
+        while not queue.is_empty():
+            root = queue.dequeue()
             print(root.data)
-            if root.leftChild is not None:
-                customQueue.enqueue(root.leftChild)
-            if root.rightChild is not None:
-                customQueue.enqueue(root.rightChild)
+            if root.left_child:
+                queue.enqueue(root.left_child)
+            if root.right_child:
+                queue.enqueue(root.right_child)
 
 
-def searchNode(rootNode, nodeValue):
-    if rootNode.data == nodeValue:
-        print("The value is found")
-    elif nodeValue < rootNode.data:
-        if rootNode.leftChild.data == nodeValue:
-            print("The value is found")
+def searching(root_node, value):
+    if root_node is None:
+        return "not found"
+    elif root_node.data == value:
+        return "found"
+    elif value < root_node.data:
+        if root_node.left_child.data == value:
+            return "found"
         else:
-            searchNode(rootNode.leftChild, nodeValue)
+            searching(root_node.left_child, value)
     else:
-        if rootNode.rightChild.data == nodeValue:
-            print("The value is found")
+        if root_node.right_child.data == value:
+            return "found"
         else:
-            searchNode(rootNode.rightChild, nodeValue)
+            searching(root_node.right_child, value)
 
-
-def getHeight(rootNode):
-    if not rootNode:
+def get_height(root_node):
+    if not root_node:
         return 0
-    return rootNode.height
+    return root_node.height
 
+def right_rotation(disbalance_node):
+    new_root = disbalance_node.left_child
+    disbalance_node.left_child = disbalance_node.left_child.right_child
+    new_root.right_child = disbalance_node
+    disbalance_node.height = 1 + max(get_height(disbalance_node.left_child), get_height(disbalance_node.right_child))
+    new_root.height = 1 + max(get_height(new_root.left_child), get_height(new_root.right_child))
+    return new_root
 
-def rightRotate(disbalanceNode):
-    newRoot = disbalanceNode.leftChild
-    disbalanceNode.leftChild = disbalanceNode.leftChild.rightChild
-    newRoot.rightChild = disbalanceNode
-    disbalanceNode.height = 1 + max(getHeight(disbalanceNode.leftChild), getHeight(disbalanceNode.rightChild))
-    newRoot.height = 1 + max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild))
-    return newRoot
+def left_rotation(disbalanced_node):
+    new_root = disbalanced_node.right_child
+    disbalanced_node.right_child = disbalanced_node.right_child.left_child
+    new_root.left_child = disbalanced_node
+    disbalanced_node.height = 1 + max(get_height(disbalanced_node.left_child), get_height(disbalanced_node.right_child))
+    new_root.height = 1 + max(get_height(new_root.left_child), get_height(new_root.right_child))
+    return new_root
 
-
-def leftRotate(disbalanceNode):
-    newRoot = disbalanceNode.rightChild
-    disbalanceNode.rightChild = disbalanceNode.rightChild.leftChild
-    newRoot.leftChild = disbalanceNode
-    disbalanceNode.height = 1 + max(getHeight(disbalanceNode.leftChild), getHeight(disbalanceNode.rightChild))
-    newRoot.height = 1 + max(getHeight(newRoot.leftChild), getHeight(newRoot.rightChild))
-    return newRoot
-
-
-def getBalance(rootNode):
-    if not rootNode:
+def get_balance(root_node):
+    if not root_node:
         return 0
-    return getHeight(rootNode.leftChild) - getHeight(rootNode.rightChild)
-
-
-def insertNode(rootNode, nodeValue):
-    if not rootNode:
-        return AVLNode(nodeValue)
-    elif nodeValue < rootNode.data:
-        rootNode.leftChild = insertNode(rootNode.leftChild, nodeValue)
     else:
-        rootNode.rightChild = insertNode(rootNode.rightChild, nodeValue)
+        return get_height(root_node.left_child) - get_height(root_node.right_child)
 
-    rootNode.height = 1 + max(getHeight(rootNode.leftChild), getHeight(rootNode.rightChild))
-    balance = getBalance(rootNode)
-    if balance > 1 and nodeValue < rootNode.leftChild.data:
-        return rightRotate(rootNode)
-    if balance > 1 and nodeValue > rootNode.leftChild.data:
-        rootNode.leftChild = leftRotate(rootNode.leftChild)
-        return rightRotate(rootNode)
-    if balance < -1 and nodeValue > rootNode.rightChild.data:
-        return leftRotate(rootNode)
-    if balance < -1 and nodeValue < rootNode.rightChild.data:
-        rootNode.rightChild = rightRotate(rootNode.rightChild)
-        return leftRotate(rootNode)
-    return rootNode
-
-
-def getMinValueNode(rootNode):
-    if rootNode is None or rootNode.leftChild is None:
-        return rootNode
-    return getMinValueNode(rootNode.leftChild)
-
-
-def deleteNode(rootNode, nodeValue):
-    if not rootNode:
-        return rootNode
-    elif nodeValue < rootNode.data:
-        rootNode.leftChild = deleteNode(rootNode.leftChild, nodeValue)
-    elif nodeValue > rootNode.data:
-        rootNode.rightChild = deleteNode(rootNode.rightChild, nodeValue)
+def insert_node(root_node, value):
+    if not root_node:
+        return AVL_Tree(value)
+    elif value < root_node.data:
+        root_node.left_child = insert_node(root_node.left_child, value)
     else:
-        if rootNode.leftChild is None:
-            temp = rootNode.rightChild
-            rootNode = None
-            return temp
-        elif rootNode.rightChild is None:
-            temp = rootNode.leftChild
-            rootNode = None
-            return temp
-        temp = getMinValueNode(rootNode.rightChild)
-        rootNode.data = temp.data
-        rootNode.rightChild = deleteNode(rootNode.rightChild, temp.data)
-    balance = getBalance(rootNode)
-    if balance > 1 and getBalance(rootNode.leftChild) >= 0:
-        return rightRotate(rootNode)
-    if balance < -1 and getBalance(rootNode.rightChild) <= 0:
-        return leftRotate(rootNode)
-    if balance > 1 and getBalance(rootNode.leftChild) < 0:
-        rootNode.leftChild = leftRotate(rootNode.leftChild)
-        return rightRotate(rootNode)
-    if balance < -1 and getBalance(rootNode.rightChild) > 0:
-        rootNode.rightChild = rightRotate(rootNode.rightChild)
-        return leftRotate(rootNode)
-    return rootNode
+        root_node.right_child = insert_node(root_node.right_child, value)
+
+    root_node.height = 1 + max(get_height(root_node.left_child), get_height(root_node.right_child))
+    balance = get_balance(root_node)
+    if balance > 1 and value < root_node.left_child.data:
+        return right_rotation(root_node)
+    if balance > 1 and value > root_node.left_child.data:
+        root_node.left_child = left_rotation(root_node.left_child)
+        return right_rotation(root_node)
+    if balance < -1 and value > root_node.right_child.data:
+        return left_rotation(root_node)
+    if balance < -1 and value < root_node.right_child.data:
+        root_node.right_child = right_rotation(root_node.right_child)
+        return left_rotation(root_node)
+    return root_node
+
+def minimum_value(root_node):
+    if root_node is None:
+        return root_node
+    current = root_node
+    while current.left_child:
+        current = current.left_child
+    return current
+
+def delete(root_node, value):
+    if root_node.data is None:
+        return root_node
+    elif value < root_node.data:
+        root_node.left_child = delete(root_node.left_child, value)
+    elif value > root_node.data:
+        root_node.right_child = delete(root_node.right_child, value)
+    else:
+        if root_node.left_child is None:
+            return root_node.right_child
+        if root_node.right_child is None:
+            return root_node.left_child
+
+        temp = minimum_value(root_node.right_child)
+        root_node.data = temp.data
+        root_node.right_child = delete(root_node.right_child, temp.data)
+
+        balance = get_balance(root_node)
+
+        if balance > 1 and get_balance(root_node.left_child) >= 0:
+            return right_rotation(root_node)
+        if balance < -1 and get_balance(root_node.right_child) <= 0:
+            return left_rotation(root_node)
+        if balance > 1 and get_balance(root_node.left_child) < 0:
+            root_node.left_child = left_rotation(root_node.left_child)
+            return right_rotation(root_node)
+        if balance < -1 and get_balance(root_node.right_child) > 0:
+            root_node.right_child = right_rotation(root_node.right_child)
+            return left_rotation(root_node)
+        return root_node
+
+def delete_entire_avl_tree(root_node):
+    root_node.data = None
+    root_node.left_child = None
+    root_node.right_child = None
 
 
-def deleteAVL(rootNode):
-    rootNode.data = None
-    rootNode.leftChild = None
-    rootNode.rightChild = None
-    return "The AVL has been successfully deleted"
-
-
-newAVL = AVLNode(5)
+avl_tree = AVL_Tree(25)
 
 if __name__ == "__main__":
-    newAVL = insertNode(newAVL, 10)
-    newAVL = insertNode(newAVL, 15)
-    newAVL = insertNode(newAVL, 20)
-    levelOrderTraversal(newAVL)
+    avl_tree = insert_node(avl_tree, 30)
+    avl_tree = insert_node(avl_tree, 40)
+    avl_tree = insert_node(avl_tree, 50)
+    avl_tree = insert_node(avl_tree, 60)
+    avl_tree = insert_node(avl_tree, 80)
+    # levelOrder_traversal(avl_tree)
+    delete(avl_tree, 60)
+    levelOrder_traversal(avl_tree)
