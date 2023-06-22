@@ -21,4 +21,4 @@ def heapSort(customList):
     for i in range(n - 1, 0, -1):
         customList[i], customList[0] = customList[0], customList[i]
         heapify(customList, i, 0)
-    # customList.reverse()
+    customList.reverse()
