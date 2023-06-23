@@ -29,6 +29,16 @@ class Bucket:
                     j -= 1
                 array[j+1] = key
         return array
+    @staticmethod
+    def quick_sort(array):
+        if len(array) <= 1:
+            return array
+        else:
+            pivot = array[len(array)//2]
+            left = [x for x in array if x < pivot]
+            right = [x for x in array if x > pivot]
+            middle = [x for x in array if x == pivot]
+            return Bucket.quick_sort(left) + middle + Bucket.quick_sort(right)
 
 
 
