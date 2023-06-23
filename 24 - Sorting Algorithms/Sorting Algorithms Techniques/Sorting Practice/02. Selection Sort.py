@@ -1,29 +1,25 @@
 class Selection:
-
     @staticmethod
     def sort(array, reverse=False):
-        if array is None:
-            return None
         if len(array) == 1:
             return array
         elif not reverse:
             for i in range(len(array)):
-                minimum_index = i
+                minimum_value = i
                 for j in range(i+1, len(array)):
-                    if array[minimum_index] > array[j]:
-                        minimum_index = j
-                array[i], array[minimum_index] = array[minimum_index], array[i]
+                    if array[minimum_value] > array[j]:
+                        minimum_value = j
+                array[i] , array[minimum_value] = array[minimum_value], array[i]
         else:
             for i in range(len(array)):
-                minimum_number = i
+                minimum_value = 1
                 for j in range(i+1, len(array)):
-                    if array[minimum_number] < array[j]:
-                        minimum_number = j
-                array[i], array[minimum_number] = array[minimum_number], array[i]
+                    if array[minimum_value] < array[j]:
+                        minimum_value = j
+                array[i],  array[minimum_value], = array[minimum_value], array[i]
         return array
 
-numbers = [4,5,7,3,2,6,1]
+numbers = [2,3,1,4,6,5,7,9,8]
 
 if __name__ == "__main__":
-    print(Selection().sort(numbers))
-    print(Selection().sort(numbers, True))
+    print(Selection.sort(numbers, True))
