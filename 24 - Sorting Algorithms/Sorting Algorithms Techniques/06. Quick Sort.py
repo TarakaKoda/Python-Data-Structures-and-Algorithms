@@ -30,3 +30,20 @@ class Quick:
             partition = self.partition(values, start, end)
             self.sort(values, start, partition - 1)
             self.sort(values, partition + 1, end)
+
+    @staticmethod
+    def quick_sort(array):
+        if len(array) <= 1:
+            return array
+        else:
+            pivot = array[len(array)//2]
+            left = [x for x in array if x < pivot]
+            right = [x for x in array if x > pivot]
+            middle = [x for x in array if x == pivot]
+            return Quick.quick_sort(left) + middle + Quick.quick_sort(right)
+
+
+numbers = [2,4,5,2,6,7,8,1]
+
+if __name__ == "__main__":
+    print(Quick.quick_sort(numbers))
